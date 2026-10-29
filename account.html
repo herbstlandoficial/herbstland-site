@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <title>Minha conta | HERBSTLAND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="herbstland-v11.css?v=126"><link rel="stylesheet" href="cart-preview.css?v=131">
+  <style>
+    body.account-page{background:#f7f5ef;color:#171713;font-family:Manrope,Arial,sans-serif}
+    .account-main{max-width:1160px;margin:0 auto;padding:54px 24px 90px;min-height:65vh}
+    .account-kicker{font:11px 'DM Mono',monospace;letter-spacing:.16em;color:#9a7414;text-transform:uppercase}
+    .account-title{font:600 clamp(34px,5vw,58px) Oswald,sans-serif;line-height:1.05;margin:12px 0 10px;text-transform:uppercase}
+    .account-lead{max-width:620px;color:#716c61;font-size:14px;line-height:1.7;margin:0 0 30px}
+    .account-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}
+    .account-card,.account-aside{background:#fff;border:1px solid #e5e0d5;border-radius:14px;padding:28px;box-shadow:0 12px 35px #211b0c08}
+    .account-tabs{display:flex;gap:8px;padding:5px;background:#f3f1eb;border-radius:9px;margin-bottom:24px}
+    .account-tabs button{flex:1;border:0;border-radius:7px;background:transparent;padding:12px 10px;font:800 11px Manrope,sans-serif;cursor:pointer;color:#716c61}
+    .account-tabs button.active{background:#171713;color:#f2c83f}
+    .account-form h2,.account-dashboard h2{font:600 25px Oswald,sans-serif;text-transform:uppercase;margin:0 0 7px}
+    .form-intro{font-size:12px;color:#777165;line-height:1.6;margin:0 0 20px}
+    .account-field{display:block;margin:0 0 14px}.account-field span{display:block;font-size:11px;font-weight:800;margin-bottom:7px}
+    .account-field input{width:100%;box-sizing:border-box;border:1px solid #dcd7cc;border-radius:8px;padding:14px 13px;background:#fff;font:13px Manrope,sans-serif;outline:none}
+    .account-field input:focus{border-color:#d6a91e;box-shadow:0 0 0 3px #efc43e24}
+    .account-submit{width:100%;border:0;border-radius:8px;background:#efc43e;color:#171713;padding:15px;font:800 12px Manrope,sans-serif;letter-spacing:.04em;cursor:pointer;margin-top:4px}
+    .account-submit:disabled{opacity:.6;cursor:wait}
+    .account-links{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:17px}
+    .account-links button{border:0;background:none;padding:0;color:#80600c;text-decoration:underline;font:600 11px Manrope,sans-serif;cursor:pointer}
+    .account-message{display:none;margin:16px 0 0;padding:13px 14px;border-radius:8px;font-size:12px;line-height:1.6}.account-message.show{display:block}.account-message.success{background:#edf7ed;color:#245b2b}.account-message.error{background:#fff0ed;color:#943b2e}
+    .account-aside{background:#171713;color:#fff;border-color:#171713}.account-aside .aside-mark{font:11px 'DM Mono',monospace;color:#efc43e;letter-spacing:.14em}.account-aside h3{font:600 26px Oswald,sans-serif;text-transform:uppercase;margin:12px 0}.account-aside p{font-size:12px;line-height:1.8;color:#c9c5bb}.account-aside ul{list-style:none;padding:0;margin:20px 0 0}.account-aside li{font-size:12px;color:#eee8d9;padding:10px 0;border-top:1px solid #ffffff1c}.account-aside li:before{content:'✓';color:#efc43e;margin-right:9px;font-weight:800}
+    .account-dashboard{display:none}.account-dashboard.visible{display:block}.account-dashboard .welcome{font-size:13px;color:#6d675b;margin:0 0 22px}.dashboard-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.dashboard-tile{padding:17px;border:1px solid #e9e4d9;border-radius:9px;background:#fbfaf7}.dashboard-tile strong{display:block;font:600 18px Oswald,sans-serif;text-transform:uppercase;margin-bottom:6px}.dashboard-tile span{font-size:11px;color:#777165;line-height:1.5}.orders-placeholder{margin-top:20px;padding:20px;border:1px dashed #d7d0c1;border-radius:10px}.orders-placeholder strong{font:600 20px Oswald,sans-serif;text-transform:uppercase}.orders-placeholder p{font-size:12px;color:#777165;line-height:1.7}.logout-button{margin-top:20px;border:1px solid #d7d0c1;border-radius:7px;background:#fff;padding:11px 17px;font:800 11px Manrope,sans-serif;cursor:pointer}
+    /* Área de endereços: campos organizados como no checkout de referência */
+    .address-section{margin-top:26px;padding-top:24px;border-top:1px solid #e9e4d9}
+    .address-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:9px}
+    .address-heading h3{font:600 23px Oswald,sans-serif;text-transform:uppercase;margin:0;color:#171713}
+    .address-add,.address-save,.address-cancel,.address-item button{border:0;border-radius:7px;padding:12px 17px;font:800 11px Manrope,sans-serif;letter-spacing:.035em;cursor:pointer;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+    .address-add,.address-save{background:#efc43e;color:#171713;box-shadow:0 3px 0 #d6a91e}
+    .address-add:hover,.address-save:hover{background:#f6d45d;transform:translateY(-1px)}
+    .address-cancel{background:#f2f0ea;color:#39362f;border:1px solid #ddd7ca}
+    .address-cancel:hover{background:#e9e5db}
+    .address-description{font-size:12px;line-height:1.7;color:#777165;margin:0 0 19px}
+    .address-feedback{display:none;margin:0 0 15px;padding:11px 13px;border-radius:7px;font-size:12px;line-height:1.5}
+    .address-feedback:not(:empty){display:block;background:#edf7ed;color:#245b2b}.address-feedback.error{background:#fff0ed;color:#943b2e}
+    .address-form{display:none;padding:20px;border:1px solid #e9e4d9;border-radius:11px;background:#fbfaf7}.address-form.open{display:block}
+    .address-form h4{font:600 19px Oswald,sans-serif;text-transform:uppercase;margin:0 0 18px;color:#171713}
+    .address-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:16px;row-gap:1px;align-items:start}
+    .address-fields .account-field{min-width:0;margin-bottom:13px}
+    .address-fields .account-field span{font-size:10px;letter-spacing:.045em;color:#37342d}
+    .address-fields .account-field input{height:46px;padding:12px 13px;border-radius:7px;background:#fff;border-color:#dcd7cc;font-size:12px}
+    .address-fields .account-field input:focus{border-color:#d6a91e;box-shadow:0 0 0 3px #efc43e24}
+    .address-fields .account-field.wide{grid-column:1/-1}
+    #address-label{ }
+    #address-phone{ }
+    #address-postal{ }
+    #address-number{ }
+    #address-neighborhood{ }
+    .address-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:5px}
+    .address-save,.address-cancel{min-height:42px}
+    .address-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+    .address-item,.address-list>div{min-width:0;padding:16px;border:1px solid #e9e4d9;border-radius:9px;background:#fff;color:#37342d;font-size:12px;line-height:1.7}
+    .address-item strong{color:#171713}.address-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.address-item .address-label{font:600 16px Oswald,sans-serif;text-transform:uppercase;color:#171713}.address-controls{display:flex;gap:6px}.address-item .address-controls button{margin:0}.address-details{margin:10px 0 0;color:#6d675b}
+    .address-item button{margin:10px 7px 0 0;padding:9px 12px;background:#f2f0ea;color:#39362f;border:1px solid #ddd7ca}
+    .address-item button:hover{background:#efc43e;border-color:#efc43e}
+    .address-empty{color:#777165}
+    @media(max-width:600px){.address-form{padding:15px}.address-fields,.address-list{grid-template-columns:1fr}.address-fields .account-field.wide{grid-column:auto}.address-heading{align-items:flex-start}.address-add{width:100%}.address-actions button{flex:1}.address-item{grid-column:auto}}
+    @media(max-width:800px){.account-layout{grid-template-columns:1fr}.account-aside{order:2}.account-main{padding:35px 16px 65px}.account-card,.account-aside{padding:21px}.dashboard-grid{grid-template-columns:1fr}}
+
+    /* HERBSTLAND v123 — conta desktop em duas colunas; mobile preservado. */
+    /* Evita o piscar do painel enquanto a sessão é conferida pelo Supabase. */
+    body.account-page.auth-pending .account-layout{visibility:hidden}
+    @media (min-width:801px){
+      body.account-page{background:#fff!important;color:#111!important}
+      .account-main{max-width:1020px;padding:28px 24px 76px;min-height:0;color:#111}
+      .account-main>.account-kicker,.account-main>.account-title,.account-main>.account-lead{display:none!important}
+      .account-main::before{content:"Minha conta";display:block;margin:0 0 26px;color:#111;font:700 23px Manrope,Arial,sans-serif;letter-spacing:-.02em}
+      .account-layout{display:block;max-width:980px}
+      .account-card{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+      .account-aside{display:none!important}
+      #auth-panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:38px;align-items:start}
+      #auth-panel>.account-tabs{display:none!important}
+      #auth-panel>.account-form{display:block!important;min-width:0;box-sizing:border-box;margin:0;padding:18px 22px 20px;border:1px solid #222;border-radius:0;background:#f8f8f8;box-shadow:none}
+      #auth-panel>#signup-form[hidden]{display:block!important}
+      #auth-panel>.account-form::before{display:block;margin:0 0 22px;color:#111;font:400 16px Manrope,Arial,sans-serif}
+      #auth-panel>#login-form::before{content:"Entrar"}
+      #auth-panel>#signup-form::before{content:"Cadastre-se"}
+      #auth-panel>.account-form h2,#auth-panel>.account-form .form-intro{display:none!important}
+      #auth-panel>.account-form .account-field{margin-bottom:13px}
+      #auth-panel>.account-form .account-field span{font-size:10px;font-weight:500;color:#111;margin-bottom:5px}
+      #auth-panel>.account-form .account-field input{height:37px;padding:8px 10px;border:1px solid #111;border-radius:1px;background:#fff;font:11px Manrope,Arial,sans-serif}
+      #auth-panel>.account-form .account-submit{display:inline-block;width:auto;min-width:92px;margin-top:2px;padding:9px 20px;border:0;border-radius:2px;background:#050505;color:#fff;font:800 10px Manrope,Arial,sans-serif;letter-spacing:0}
+      #auth-panel>#login-form .account-links{justify-content:flex-start;margin-top:12px}
+      #auth-panel>.account-form .account-links button{font-size:10px;color:#278c9a}
+      #auth-panel>#signup-form .account-links{display:none}
+      #auth-panel>.account-message{grid-column:1/-1}
+    }
+
+    /* Ajustes exclusivos da versão celular da página Minha Conta. */
+    @media (max-width:800px){
+      .account-title{color:#efc43e!important}
+      .account-aside{display:none!important}
+    }
+  </style>
+</head>
+<body class="account-page auth-pending">
+  <header class="site-header header-v2">
+    <div class="header-main-row">
+      <a class="wordmark" href="index.html" aria-label="HERBSTLAND início"><img src="assets/herbstland-logo.png" alt="HERBSTLAND"></a>
+      <form class="header-search" action="index.html#loja" role="search"><label class="sr-only" for="account-site-search">Pesquisar produtos</label><span aria-hidden="true">⌕</span><input id="account-site-search" type="search" placeholder="O que você está procurando?" /><button type="submit" aria-label="Pesquisar">↵</button></form>
+      <div class="header-actions header-v2-actions"><a class="account-link" href="account.html"><span class="header-icon">♙</span><span>Minha conta</span></a><a class="cart-trigger" href="carrinho.html" aria-label="Abrir carrinho"><svg class="cart-svg" viewBox="0 0 48 48" role="img" aria-label="Carrinho de compras" xmlns="http://www.w3.org/2000/svg"><path d="M3 5h5l4.5 7.5 5.1 21.2a3.4 3.4 0 0 0 3.3 2.6h17.5" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13h32l-4.7 18.2H17.2M16 19h26M17.5 25h22M23 14l2 16M33 14l-1 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="21" cy="40" r="3.1" fill="currentColor"/><circle cx="37" cy="40" r="3.1" fill="currentColor"/></svg><span class="bag-count" id="cart-count">0</span><span class="cart-value" id="header-cart-value">R$ 0,00</span></a></div>
+    </div>
+    <nav class="category-nav category-nav-v2" aria-label="Categorias"><a href="index.html">INÍCIO</a><a href="camisetas-oversized.html">CAMISETAS</a><a href="canecas.html">CANECAS</a><a href="index.html#mais-vendidos">OFERTAS</a></nav>
+  </header>
+  <main class="account-main">
+    <div class="account-kicker">HERBSTLAND® · ÁREA DO CLIENTE</div>
+    <h1 class="account-title">SUA CONTA. SEU UNIVERSO.</h1>
+    <p class="account-lead">Entre ou crie sua conta para ter seus dados organizados e, nas próximas etapas, acompanhar seus pedidos, preparação e entrega em um só lugar.</p>
+    <div class="account-layout">
+      <section class="account-card">
+        <div id="auth-panel">
+          <div class="account-tabs"><button type="button" class="active" id="tab-login">FAZER LOGIN</button><button type="button" id="tab-signup">CRIAR CONTA</button></div>
+          <form class="account-form" id="login-form">
+            <h2>Bem-vinda de volta.</h2><p class="form-intro">Acesse sua conta HERBSTLAND com seu e-mail e senha.</p>
+            <label class="account-field"><span>E-MAIL</span><input type="email" id="login-email" autocomplete="email" required placeholder="seuemail@exemplo.com"></label>
+            <label class="account-field"><span>SENHA</span><input type="password" id="login-password" autocomplete="current-password" required minlength="6" placeholder="Sua senha"></label>
+            <button class="account-submit" type="submit">ENTRAR NA MINHA CONTA ↗</button>
+            <div class="account-links"><button type="button" id="forgot-password">Esqueci minha senha</button><button type="button" id="show-signup">Ainda não tenho conta</button></div>
+          </form>
+          <form class="account-form" id="signup-form" hidden>
+            <h2>Crie sua conta.</h2><p class="form-intro">Cadastre seus dados para acessar sua área de cliente.</p>
+            <label class="account-field"><span>NOME COMPLETO</span><input type="text" id="signup-name" autocomplete="name" required placeholder="Como podemos chamar você?"></label>
+            <label class="account-field"><span>WHATSAPP</span><input type="tel" id="signup-phone" autocomplete="tel" placeholder="(00) 00000-0000"></label>
+            <label class="account-field"><span>E-MAIL</span><input type="email" id="signup-email" autocomplete="email" required placeholder="seuemail@exemplo.com"></label>
+            <label class="account-field"><span>CRIE UMA SENHA</span><input type="password" id="signup-password" autocomplete="new-password" required minlength="8" placeholder="Mínimo de 8 caracteres"></label>
+            <label class="account-field"><span>CONFIRME SUA SENHA</span><input type="password" id="signup-confirm" autocomplete="new-password" required minlength="8" placeholder="Digite a senha novamente"></label>
+            <button class="account-submit" type="submit">CRIAR MINHA CONTA ↗</button>
+            <div class="account-links"><button type="button" id="show-login">Já tenho uma conta</button></div>
+          </form>
+          <div class="account-message" id="account-message" role="status" aria-live="polite"></div>
+        </div>
+        <section class="account-dashboard" id="account-dashboard">
+          <h2 id="dashboard-title">Olá!</h2><p class="welcome" id="dashboard-email"></p>
+          <div class="dashboard-grid"><div class="dashboard-tile"><strong>Meus pedidos</strong><span>Seu histórico de compras ficará reunido aqui.</span></div><div class="dashboard-tile"><strong>Rastreamento</strong><span>Em breve: preparação, postagem e entrega.</span></div><div class="dashboard-tile"><strong>Meus dados</strong><span>Seus dados de acesso estão vinculados à sua conta.</span></div><div class="dashboard-tile"><strong>Atendimento</strong><span>Conte com a equipe HERBSTLAND pelo WhatsApp.</span></div></div>
+          <section class="address-section" aria-labelledby="address-title">
+            <div class="address-heading"><h3 id="address-title">Meus endereços</h3><button type="button" class="address-add" id="add-address">+ ADICIONAR ENDEREÇO</button></div>
+            <p class="address-description">Cadastre os endereços onde deseja receber suas compras. Seus dados ficam vinculados à sua conta.</p>
+            <div class="address-feedback" id="address-feedback" role="status" aria-live="polite"></div>
+            <form class="address-form" id="address-form">
+              <h4 id="address-form-title">Novo endereço</h4>
+              <div class="address-fields">
+                <label class="account-field"><span>NOME</span><input id="address-label" maxlength="120" autocomplete="given-name" placeholder="Digite seu nome" required></label>
+                <label class="account-field"><span>SOBRENOME</span><input id="address-recipient" maxlength="120" autocomplete="family-name" placeholder="Digite seu sobrenome" required></label>
+                <label class="account-field"><span>WHATSAPP / TELEFONE</span><input id="address-phone" type="tel" maxlength="25" autocomplete="tel"></label>
+                <label class="account-field"><span>CEP</span><input id="address-postal" inputmode="numeric" maxlength="9" autocomplete="postal-code" placeholder="00000-000" required></label>
+                <label class="account-field wide"><span>RUA / AVENIDA</span><input id="address-street" maxlength="180" autocomplete="address-line1" required></label>
+                <label class="account-field"><span>NÚMERO</span><input id="address-number" maxlength="20" required></label>
+                <label class="account-field"><span>COMPLEMENTO (OPCIONAL)</span><input id="address-complement" maxlength="100" autocomplete="address-line2"></label>
+                <label class="account-field"><span>BAIRRO</span><input id="address-neighborhood" maxlength="100"></label>
+                <label class="account-field"><span>CIDADE</span><input id="address-city" maxlength="100" required autocomplete="address-level2"></label>
+                <label class="account-field"><span>ESTADO (UF)</span><input id="address-state" maxlength="2" required placeholder="SP" autocomplete="address-level1"></label>
+              </div>
+              <div class="address-actions"><button class="address-save" id="address-save" type="submit">SALVAR ENDEREÇO</button><button class="address-cancel" id="address-cancel" type="button">CANCELAR</button></div>
+            </form>
+            <div class="address-list" id="address-list"><div class="address-empty">Carregando seus endereços...</div></div>
+          </section>
+          <div class="orders-placeholder"><strong>Seu espaço está pronto para começar.</strong><p>O cadastro e o login estão ativos. O histórico de pedidos e o rastreamento serão conectados em uma próxima etapa.</p></div>
+          <button class="logout-button" id="logout-button" type="button">SAIR DA CONTA</button>
+        </section>
+      </section>
+      <aside class="account-aside"><div class="aside-mark">HERBSTLAND / CUSTOMER CLUB</div><h3>Mais praticidade em cada compra.</h3><p>Estamos preparando uma área do cliente para você acompanhar tudo sem precisar chamar a loja a cada atualização.</p><ul><li>Cadastro e acesso pessoal</li><li>Histórico de compras</li><li>Status de preparação do pedido</li><li>Informações de envio e rastreio</li></ul></aside>
+    </div>
+  </main>
+  <footer class="footer footer-expanded" id="informacoes">
+    <div class="footer-main"><div class="footer-about"><a class="wordmark" href="index.html#top"><img src="assets/herbstland-logo.png" alt="HERBSTLAND" /></a><p>NÃO NASCEMOS PARA SER IGUAIS.</p><span>A HERBSTLAND nasce da vontade de sair do automático. Criamos peças para quem transforma referências em identidade e não precisa pedir licença para ser.</span><div class="footer-social-icons" aria-label="Redes sociais"><a href="https://www.instagram.com/herbstland_personalizados/" target="_blank" rel="noopener noreferrer" aria-label="Instagram HERBSTLAND" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="icon-dot" cx="17.5" cy="6.5" r="1"/></svg></a><a href="https://wa.me/5511941466298" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp HERBSTLAND" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.1L3 20l1.2-4.9a8.2 8.2 0 1 1 16-3.3Z"/><path d="M9 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.5.5-1.2.7-2 .6-1.1-.2-2.5-.8-3.9-2.1-1.2-1.1-2-2.4-2.3-3.5-.3-1 .1-1.9.8-2.5Z"/></svg></a></div></div>
+      <div class="footer-column"><h3>EXPLORE</h3><a href="index.html#mais-vendidos">Todos os produtos</a><a href="camisetas-oversized.html">Camisetas oversized</a><a href="camisetas-oversized.html">Coleções</a><a href="index.html#mais-vendidos">Mais vendidos</a></div>
+      <div class="footer-column"><h3>ATENDIMENTO</h3><a href="index.html#avaliacoes">Avalie nossa loja</a><span>Atendimento online</span><span>Envios para todo o Brasil</span><span>Pagamento seguro na finalização da compra</span></div>
+      <div class="footer-column"><h3>HERBSTLAND</h3><span>Moda com personalidade.</span><span>Novos drops e novas histórias.</span><a href="index.html#newsletter-form">Receba nossas novidades ↗</a></div></div>
+    <div class="footer-bottom"><span>© 2026 HERBSTLAND. TODOS OS DIREITOS RESERVADOS.</span><span>NÃO NASCEMOS PARA SER IGUAIS.</span></div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="supabase-auth.js?v=114"></script>
+</body></html>

@@ -1,0 +1,9 @@
+HERBSTLAND v130 — AJUSTE DE TEMPO DA ABERTURA
+
+Nesta versão, a abertura exibe somente as duas escritas sobre fundo preto.
+- HERBSTLAND permanece visível por aproximadamente 2,2 segundos.
+- NÃO NASCEMOS PARA SER IGUAIS permanece visível pelo mesmo tempo.
+- Removidas a linha amarela superior, a barra inferior e a opção “Pular introdução”.
+- As demais páginas e funcionalidades foram preservadas.
+
+Para testar, extraia o ZIP e abra a página inicial. Se o site já estiver aberto, atualize com Ctrl + F5 para limpar o cache.

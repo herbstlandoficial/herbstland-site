@@ -1,0 +1,30 @@
+HERBSTLAND — PRIMEIRA ETAPA DA ÁREA MINHA CONTA
+
+O que foi preparado nesta versão:
+- Página account.html com criação de conta, login, recuperação de senha e sair.
+- Integração do navegador com Supabase Auth usando a chave publicável.
+- Links “Minha conta” atualizados nas páginas da loja.
+- A área logada mostra uma estrutura inicial para pedidos; o histórico/rastreio será conectado numa etapa posterior.
+
+IMPORTANTE — ANTES DE PUBLICAR
+1. No painel Supabase, entre em Authentication > URL Configuration.
+2. Configure Site URL com o endereço definitivo da loja quando o domínio estiver registrado e publicado.
+3. Em Redirect URLs, adicione também o endereço da página account.html do domínio publicado. Durante testes, adicione o endereço local do servidor de desenvolvimento que estiver usando.
+4. Em Authentication > Providers > Email, confira se o provedor Email está habilitado. Com confirmação de e-mail ativa, o cliente precisa clicar no link enviado antes de fazer login.
+5. Para testar no computador, abra a pasta por um servidor local (por exemplo, Live Server no VS Code). Não abra account.html diretamente por file://, pois autenticação e redirecionamentos precisam de uma origem HTTP/HTTPS.
+
+SEGURANÇA
+- supabase-config.js contém somente a URL do projeto e a chave sb_publishable, feita para uso no navegador.
+- Nunca coloque chaves sb_secret ou service_role em arquivos HTML/JS públicos.
+- As tabelas de pedidos, endereços e perfis com políticas RLS serão preparadas na próxima etapa, antes de guardar dados pessoais ou pedidos.
+
+LIMITAÇÃO DESTA ETAPA
+O cadastro/login já está ligado ao Supabase Auth. A tela de pedidos ainda é apenas a estrutura visual: nenhum pedido, status de preparação ou código de rastreio é gravado/exibido até configurarmos o banco e o fluxo administrativo da loja.
+
+ATUALIZAÇÃO v113 — MEUS ENDEREÇOS
+- A área logada agora lista os endereços do cliente na tabela public.addresses.
+- O cliente pode cadastrar, editar e excluir seus próprios endereços.
+- As operações usam a sessão autenticada e as políticas RLS já criadas.
+- O CEP é armazenado somente com números; a tela formata o CEP durante a digitação.
+- Não é necessário executar novo SQL se a tabela addresses e suas políticas já foram criadas conforme a etapa anterior.
+- Para testar, entre com a conta do cliente, cadastre um endereço e confira a linha correspondente em Database > Tables > addresses.
