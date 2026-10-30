@@ -112,6 +112,7 @@ exports.handler = async (event) => {
       herbstland_delivery_method: delivery,
     },
     external_reference: `herbstland-${randomUUID()}`,
+    // Não definir default_payment_method_id: o Mercado Pago deve oferecer os meios elegíveis para esta conta.
     back_urls: {
       success: `${origin}/checkout.html?payment=success`,
       pending: `${origin}/checkout.html?payment=pending`,
