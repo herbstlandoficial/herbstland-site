@@ -112,6 +112,10 @@ exports.handler = async (event) => {
       herbstland_delivery_method: delivery,
     },
     external_reference: `herbstland-${randomUUID()}`,
+    // Mantém os demais meios elegíveis e destaca o PIX no Checkout Pro.
+    payment_methods: {
+      default_payment_method_id: 'pix',
+    },
     back_urls: {
       success: `${origin}/checkout.html?payment=success`,
       pending: `${origin}/checkout.html?payment=pending`,
@@ -121,6 +125,9 @@ exports.handler = async (event) => {
     statement_descriptor: 'HERBSTLAND',
   };
 
+  // Diagnóstico seguro: registra somente metadados técnicos da resposta do Mercado Pago.
+  // Nunca registrar Access Token, dados do comprador, endereço, telefone ou corpo integral.
+  const diagnosticId = randomUUID();
   try {
     const response = await fetch('https://api.mercadopago.com/checkout/preferences', {
       method: 'POST',
@@ -131,24 +138,86 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify(preference),
     });
-    const result = await response.json();
+
+    let result = {};
+    try {
+      result = await response.json();
+    } catch {
+      result = {};
+    }
+
     if (!response.ok) {
-      console.error('Mercado Pago preference request failed:', response.status);
-      return json(502, { error: 'Não foi possível iniciar o pagamento. Tente novamente em instantes.' });
+      const causes = Array.isArray(result.cause)
+        ? result.cause.slice(0, 8).map((item) => ({
+            code: String(item?.code || '').slice(0, 100),
+            description: String(item?.description || '').slice(0, 300),
+          }))
+        : [];
+      console.error('HERBSTLAND_MP_DIAGNOSTIC', JSON.stringify({
+        diagnosticId,
+        stage: 'preference_creation',
+        httpStatus: response.status,
+        apiError: String(result.error || '').slice(0, 120),
+        apiMessage: String(result.message || '').slice(0, 300),
+        causes,
+      }));
+      return json(502, {
+        error: 'Não foi possível iniciar o pagamento. Tente novamente em instantes.',
+        diagnosticId,
+      });
     }
 
     const sandboxUrl = result.sandbox_init_point;
+    const initPoint = result.init_point;
+    console.log('HERBSTLAND_MP_DIAGNOSTIC', JSON.stringify({
+      diagnosticId,
+      stage: 'preference_created',
+      httpStatus: response.status,
+      preferenceId: String(result.id || ''),
+      sandboxInitPointReturned: Boolean(sandboxUrl),
+      sandboxInitPointHost: sandboxUrl ? (() => { try { return new URL(sandboxUrl).hostname; } catch { return 'invalid'; } })() : null,
+      productionInitPointReturned: Boolean(initPoint),
+      responseHasPaymentMethods: Boolean(result.payment_methods),
+      paymentMethodTypes: Array.isArray(result.payment_methods?.excluded_payment_types)
+        ? result.payment_methods.excluded_payment_types.map((item) => String(item?.id || '').slice(0, 40))
+        : [],
+      responseKeys: Object.keys(result).sort(),
+    }));
+
     if (!sandboxUrl) {
-      console.error('Mercado Pago did not return sandbox_init_point.');
-      return json(502, { error: 'O Mercado Pago não retornou um checkout de teste.' });
+      console.error('HERBSTLAND_MP_DIAGNOSTIC', JSON.stringify({
+        diagnosticId,
+        stage: 'missing_sandbox_init_point',
+        httpStatus: response.status,
+        responseKeys: Object.keys(result).sort(),
+      }));
+      return json(502, {
+        error: 'O Mercado Pago não retornou um checkout de teste.',
+        diagnosticId,
+      });
     }
     const checkoutUrl = new URL(sandboxUrl);
     if (!checkoutUrl.hostname.startsWith('sandbox.mercadopago.com')) {
-      return json(502, { error: 'O endereço de checkout de teste retornado não é válido.' });
+      console.error('HERBSTLAND_MP_DIAGNOSTIC', JSON.stringify({
+        diagnosticId,
+        stage: 'unexpected_checkout_host',
+        checkoutHost: checkoutUrl.hostname,
+      }));
+      return json(502, {
+        error: 'O endereço de checkout de teste retornado não é válido.',
+        diagnosticId,
+      });
     }
-    return json(200, { checkoutUrl: checkoutUrl.toString() });
+    return json(200, { checkoutUrl: checkoutUrl.toString(), diagnosticId });
   } catch (error) {
-    console.error('Mercado Pago preference request failed:', error?.message || 'unknown error');
-    return json(502, { error: 'Não foi possível conectar ao Mercado Pago. Tente novamente.' });
+    console.error('HERBSTLAND_MP_DIAGNOSTIC', JSON.stringify({
+      diagnosticId,
+      stage: 'network_or_runtime_error',
+      message: String(error?.message || 'unknown error').slice(0, 300),
+    }));
+    return json(502, {
+      error: 'Não foi possível conectar ao Mercado Pago. Tente novamente.',
+      diagnosticId,
+    });
   }
 };
