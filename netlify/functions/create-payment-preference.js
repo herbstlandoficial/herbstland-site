@@ -112,10 +112,6 @@ exports.handler = async (event) => {
       herbstland_delivery_method: delivery,
     },
     external_reference: `herbstland-${randomUUID()}`,
-    // Mantém os demais meios elegíveis e destaca o PIX no Checkout Pro.
-    payment_methods: {
-      default_payment_method_id: 'pix',
-    },
     back_urls: {
       success: `${origin}/checkout.html?payment=success`,
       pending: `${origin}/checkout.html?payment=pending`,
