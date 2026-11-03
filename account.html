@@ -67,8 +67,7 @@
     @media(max-width:800px){.account-layout{grid-template-columns:1fr}.account-aside{order:2}.account-main{padding:35px 16px 65px}.account-card,.account-aside{padding:21px}.dashboard-grid{grid-template-columns:1fr}}
 
     /* HERBSTLAND v123 — conta desktop em duas colunas; mobile preservado. */
-    /* Evita o piscar do painel enquanto a sessão é conferida pelo Supabase. */
-    body.account-page.auth-pending .account-layout{visibility:hidden}
+    /* Os formulários ficam visíveis imediatamente; a checagem de sessão continua em segundo plano. */
     @media (min-width:801px){
       body.account-page{background:#fff!important;color:#111!important}
       .account-main{max-width:1020px;padding:28px 24px 76px;min-height:0;color:#111}
