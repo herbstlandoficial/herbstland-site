@@ -1,0 +1,21 @@
+
+/* HERBSTLAND v151 — faixa superior limpa e informações comerciais nos cards */
+html,body{margin-top:0!important}
+body>.announcement.header-promo{margin-top:0!important;top:0!important}
+.site-header .menu-toggle,.header-v2-actions .menu-toggle,.icon-button.menu-toggle{display:none!important}
+.catalog-payment-info{padding:0 4px 12px;margin-top:-1px;color:#575247;font-family:var(--body,Arial,sans-serif)}
+.catalog-payment-info p{margin:3px 0;line-height:1.25}
+.catalog-card-price{font-size:12px;color:#514a3d}
+.catalog-card-price strong{font-size:14px;font-weight:800;color:#27241e}
+.catalog-card-price span{font-size:10px;color:#777064}
+.catalog-installments{font-size:10px;color:#777064}
+.catalog-installments strong{font-weight:700;color:#514a3d}
+.catalog-pix-price{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-top:5px!important}
+.catalog-pix-price strong{font-size:23px;line-height:1.1;color:#12a957;font-weight:900;letter-spacing:-.045em}
+.catalog-pix-price span{font-size:10px;color:#575247}
+.catalog-pix-price b{display:inline-block;margin-left:2px;padding:2px 5px;border-radius:3px;background:#dff6e8;color:#07863d;font-size:8px;letter-spacing:.03em}
+.catalog-product-actions{margin-top:5px!important}
+@media(max-width:700px){
+ .catalog-payment-info{padding:0 3px 10px}
+ .catalog-pix-price strong{font-size:21px}
+}

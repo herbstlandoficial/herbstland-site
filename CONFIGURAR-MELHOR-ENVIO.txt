@@ -1,0 +1,38 @@
+INTEGRAÇÃO HERBSTLAND + MELHOR ENVIO — CONFIGURAÇÃO
+
+URL DE CALLBACK (copiar exatamente para a Área Dev do Melhor Envio):
+https://velvety-alfajores-e4b180.netlify.app/.netlify/functions/melhor-envio-callback
+
+URL para iniciar a autorização (usar depois de publicar e configurar as variáveis):
+https://velvety-alfajores-e4b180.netlify.app/.netlify/functions/melhor-envio-start
+
+1) Na Netlify, abra Site configuration > Environment variables e configure:
+- ME_CLIENT_ID = Client ID exibido pelo Melhor Envio após cadastrar o aplicativo
+- ME_CLIENT_SECRET = Secret exibido pelo Melhor Envio (NUNCA colocar no site ou enviar por mensagem)
+- ME_REDIRECT_URI = https://velvety-alfajores-e4b180.netlify.app/.netlify/functions/melhor-envio-callback
+- ME_STATE_SECRET = uma string aleatória longa e exclusiva (mínimo 32 caracteres)
+- ME_CONTACT_EMAIL = e-mail de contato técnico
+- SUPABASE_URL = URL do projeto Supabase da HERBSTLAND
+- SUPABASE_SERVICE_ROLE_KEY = chave service_role/secret do Supabase. Somente variável de servidor Netlify; nunca publicar no frontend ou compartilhar.
+
+2) No SQL Editor do Supabase, execute:
+
+create table if not exists public.private_integrations (
+  integration text primary key,
+  credentials jsonb not null,
+  updated_at timestamptz not null default now()
+);
+alter table public.private_integrations enable row level security;
+revoke all on public.private_integrations from anon, authenticated;
+
+A função Netlify usa a chave service role no servidor para gravar nesta tabela. Não crie políticas públicas para esta tabela.
+
+3) Publique o ZIP atualizado na Netlify.
+4) Depois de cadastrar o aplicativo no Melhor Envio, preencha ME_CLIENT_ID e ME_CLIENT_SECRET nas variáveis da Netlify e publique novamente.
+5) Abra a URL de iniciar autorização acima para autorizar a conta Melhor Envio.
+
+IMPORTANTE:
+- O callback deve ser idêntico ao cadastrado no Melhor Envio, inclusive o ponto em /.netlify/.
+- O token de acesso dura 30 dias e o refresh token 45 dias. A rotina de renovação ainda precisa ser implementada antes de depender da integração em produção.
+- Este pacote implementa início e retorno OAuth e armazenamento privado. Ainda NÃO implementa cálculo de frete, criação de etiquetas nem renovação automática de token.
+- A API de produção do Melhor Envio é https://melhorenvio.com.br. A documentação oficial informa OAuth2 e exige User-Agent com nome da aplicação e e-mail de contato.

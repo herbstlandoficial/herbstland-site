@@ -1,0 +1,44 @@
+/* HERBSTLAND v144 — vitrine editorial: imagens valorizadas, cards consistentes */
+:root{--vitrine-paper:#f1eee6;--vitrine-card:#fff;--vitrine-ink:#171612;--vitrine-gold:#c99a20;}
+/* Vitrine da página inicial */
+.best-sellers{background:#090908;color:#f5f3ed}
+.best-sellers-heading{margin-bottom:34px}
+.best-seller-card{background:var(--vitrine-card)!important;color:var(--vitrine-ink)!important;border:1px solid rgba(214,170,50,.24)!important;border-radius:3px!important;padding:11px!important;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease!important}
+.best-seller-card:hover{transform:translateY(-5px)!important;box-shadow:0 16px 34px rgba(0,0,0,.22)!important;border-color:#d6aa32!important}
+.best-seller-image{height:clamp(280px,32vw,390px)!important;background:var(--vitrine-paper)!important;border-radius:2px; padding:18px!important}
+.best-seller-image img{width:100%!important;height:100%!important;object-fit:contain!important;mix-blend-mode:multiply;transition:transform .35s ease!important}
+.best-seller-card:hover .best-seller-image img{transform:scale(1.045)!important}
+.best-seller-tag{background:rgba(255,255,255,.9);color:#4a3a14;padding:7px 9px;font:9px var(--mono);letter-spacing:.09em}
+.best-seller-info{min-height:105px!important;padding:17px 5px 14px!important;gap:12px!important}
+.best-seller-info small{color:#987016!important;font-size:9px!important}
+.best-seller-info h3{color:#171612!important;font-size:12px!important;line-height:1.35!important;letter-spacing:.025em}
+.best-seller-info p{color:#77736a!important;font-size:8px!important;line-height:1.5}
+.best-seller-info>strong{color:#8b6410!important;font-size:13px!important;padding-top:24px!important}
+.best-seller-cta{display:flex!important;justify-content:space-between;align-items:center;background:#d6aa32!important;color:#17140b!important;padding:13px 14px!important;border-radius:2px;font:700 10px var(--body)!important;letter-spacing:.08em;transition:background .2s ease}
+.best-seller-cta:hover{background:#e8c65a!important}
+.best-sellers-all{display:inline-flex;margin-top:28px;padding:13px 18px;border:1px solid rgba(214,170,50,.65);color:#f5f3ed;font:10px var(--mono);letter-spacing:.09em;transition:.2s}
+.best-sellers-all:hover{background:#d6aa32;color:#17140b}
+/* Vitrine do catálogo */
+.oversized-page .product-grid{gap:24px!important;align-items:stretch}
+.oversized-page .product-card{background:#fff;color:#171612;border:1px solid #e3dfd5;border-radius:3px;padding:10px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.oversized-page .product-card:hover{transform:translateY(-4px);box-shadow:0 15px 30px rgba(0,0,0,.2);border-color:#d6aa32}
+.oversized-page .product-visual.product-photo{height:clamp(280px,31vw,390px)!important;background:var(--vitrine-paper)!important;padding:15px!important;border-radius:2px}
+.oversized-page .product-visual.product-photo img{object-fit:contain!important;mix-blend-mode:multiply;transition:transform .35s ease}
+.oversized-page .product-card:hover .product-visual.product-photo img{transform:scale(1.04)}
+.oversized-page .product-visual.product-photo .product-tag{top:12px;left:12px;background:#fff;color:#6e5315;border:1px solid #eee5d0;border-radius:2px;font-size:8px;letter-spacing:.1em}
+.oversized-page .product-visual.product-photo .quick-label{opacity:1!important;right:12px;bottom:12px;background:#fff;color:#171612;border:1px solid #e6dfcf;border-radius:2px;font-size:8px;padding:8px 10px}
+.oversized-page .product-info{flex:1;align-items:flex-start;padding:16px 5px 13px!important;min-height:104px}
+.oversized-page .product-info h3{font-size:11px;line-height:1.45;color:#171612;letter-spacing:.035em}
+.oversized-page .product-info p{font-size:8px;line-height:1.5;color:#77736a}
+.oversized-page .product-info strong{font-size:13px;color:#8b6410;padding-top:1px}
+/* Ajustes responsivos: nenhum produto desaparece */
+@media(max-width:850px){.best-seller-image{height:300px!important}.best-seller-card:last-child .best-seller-image{height:300px!important}.oversized-page .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important}.oversized-page .product-visual.product-photo{height:310px!important}}
+@media(max-width:560px){.best-sellers{padding-left:5vw;padding-right:5vw}.best-seller-card{padding:9px!important}.best-seller-image,.best-seller-card:last-child .best-seller-image{height:300px!important;padding:14px!important}.best-seller-info{min-height:94px!important;display:flex!important}.best-seller-info h3{font-size:11px!important}.best-seller-info>strong{font-size:11px!important;padding-top:20px!important}.oversized-page .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.oversized-page .product-card{padding:7px}.oversized-page .product-visual.product-photo{height:235px!important;padding:8px!important}.oversized-page .product-info{display:flex!important;flex-direction:column;gap:8px;min-height:118px;padding:12px 3px 8px!important}.oversized-page .product-info h3{font-size:9px}.oversized-page .product-info p{font-size:7px}.oversized-page .product-info strong{font-size:11px}.oversized-page .product-visual.product-photo .quick-label{font-size:7px;padding:6px 7px}}
+
+/* v145 — ação rápida na vitrine de mais vendidos */
+.best-seller-actions{display:grid;grid-template-columns:1fr;gap:7px;margin-top:auto}
+.best-seller-add{display:flex!important;justify-content:space-between;align-items:center;width:100%;min-height:43px;padding:12px 14px;border:1px solid #171612!important;border-radius:2px;background:#171612!important;color:#fff!important;font:700 10px var(--body)!important;letter-spacing:.075em;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.best-seller-add span{font-size:17px;line-height:1}
+.best-seller-add:hover{background:#3b321b!important;border-color:#3b321b!important;transform:translateY(-1px)}
+.best-seller-actions .best-seller-cta{min-height:39px}
+@media(max-width:560px){.best-seller-add{min-height:40px;padding:10px 11px;font-size:9px!important}.best-seller-actions{gap:6px}}

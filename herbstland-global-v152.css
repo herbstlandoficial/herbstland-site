@@ -1,0 +1,28 @@
+
+/* HERBSTLAND v152 — faixa amarela restaurada e preços compactos */
+.oversized-page .product-info{min-height:0!important;flex:0 0 auto!important;padding:10px 5px 5px!important;gap:0!important;display:flex!important;align-items:flex-start!important}
+.oversized-page .product-info>div{width:100%;min-width:0}
+.oversized-page .product-info h3{margin:0 0 4px!important;font-size:11px!important;line-height:1.3!important;color:#211f19!important}
+.oversized-page .product-info p{margin:0!important;font-size:8px!important;line-height:1.35!important;color:#817b6f!important}
+/* O preço principal já aparece no bloco de pagamento; evita duplicidade no cabeçalho do card. */
+.oversized-page .product-info>strong{display:none!important}
+.oversized-page .catalog-payment-info{margin:0!important;padding:7px 5px 11px!important;border-top:1px solid #eee9df!important;color:#625d53!important}
+.oversized-page .catalog-payment-info p{margin:2px 0!important;line-height:1.35!important}
+.oversized-page .catalog-card-price{font-size:11px!important;color:#625d53!important}
+.oversized-page .catalog-card-price strong{font-size:14px!important;color:#292720!important;font-weight:800!important}
+.oversized-page .catalog-card-price span{font-size:10px!important;color:#777166!important}
+.oversized-page .catalog-installments{font-size:9px!important;color:#777166!important}
+.oversized-page .catalog-installments strong{font-size:10px!important;color:#49453c!important;font-weight:700!important}
+.oversized-page .catalog-pix-price{display:flex!important;align-items:baseline!important;gap:5px!important;flex-wrap:wrap!important;margin-top:5px!important}
+.oversized-page .catalog-pix-price strong{font-size:22px!important;line-height:1.05!important;color:#12a957!important;font-weight:900!important;letter-spacing:-.04em!important}
+.oversized-page .catalog-pix-price span{font-size:10px!important;color:#625d53!important}
+.oversized-page .catalog-pix-price b{font-size:8px!important;padding:3px 6px!important;border-radius:3px!important;background:#e3f7eb!important;color:#07863d!important}
+.oversized-page .catalog-product-actions{margin-top:0!important;padding-top:0!important}
+@media(max-width:700px){
+ .oversized-page .product-info{padding:9px 3px 4px!important}
+ .oversized-page .catalog-payment-info{padding:6px 3px 9px!important}
+ .oversized-page .catalog-pix-price strong{font-size:20px!important}
+}
+/* v155 — faixa promocional encostada ao topo; sem caracteres residuais acima */
+html,body{margin-top:0!important;padding-top:0!important}
+body>.announcement.header-promo{margin-top:0!important;top:0!important}

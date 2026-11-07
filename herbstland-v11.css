@@ -1401,7 +1401,7 @@ body>main .faq-section{background:rgba(255,255,255,.96)!important}
 /* V102 — novo fundo editorial: estampa + textura de tecido, com presença visual */
 body>.scroll-backdrop{
   opacity:1!important;
-  background-image:linear-gradient(180deg,rgba(5,5,4,.30),rgba(5,5,4,.43)),url("assets/fundo-herbstland-editorial.jpg")!important;
+  background-image:linear-gradient(180deg,rgba(5,5,4,.30),rgba(5,5,4,.43)),url("assets/fundo-underground-herbstland.jpg")!important;
   background-size:cover!important;
   background-position:center center!important;
   background-repeat:no-repeat!important;
@@ -1412,7 +1412,7 @@ body>main>.quick-categories{background:rgba(8,8,7,.32)!important}
 body>main>.home-mugs-feature{background:linear-gradient(110deg,rgba(24,22,17,.82),rgba(8,8,7,.86))!important}
 body>footer.footer-expanded{background:rgba(8,8,7,.84)!important}
 @media(max-width:760px){
- body>.scroll-backdrop{background-image:linear-gradient(180deg,rgba(5,5,4,.40),rgba(5,5,4,.54)),url("assets/fundo-herbstland-editorial.jpg")!important;background-position:center center!important}
+ body>.scroll-backdrop{background-image:linear-gradient(180deg,rgba(5,5,4,.40),rgba(5,5,4,.54)),url("assets/fundo-underground-herbstland.jpg")!important;background-position:center center!important}
 }
 
 /* HERBSTLAND v110 — cabeçalho sem favoritos e ícone de carrinho */
@@ -2159,4 +2159,31 @@ body>footer.footer-expanded{background:rgba(8,8,7,.84)!important}
   .brand-intro{animation:hlIntroFadeOutV130 .2s 4.4s ease forwards!important}
   .intro-brand-name{animation:hlBrandHoldV130 2.2s .1s linear both!important}
   .intro-slogan{animation:hlSloganHoldV130 2.2s 2.3s linear both!important}
+}
+
+
+/* Busca HERBSTLAND — resultados em painel clicável */
+.header-search{position:relative;z-index:60}
+.search-feedback[hidden]{display:none!important}
+.search-feedback{position:absolute;left:0;right:0;top:calc(100% + 10px);z-index:1000;display:block;max-height:min(420px,70vh);overflow:auto;padding:10px;background:#fff;border:1px solid rgba(20,20,20,.10);border-radius:16px;box-shadow:0 16px 45px rgba(0,0,0,.24);color:#171717;font-family:var(--body)}
+.search-results-heading{padding:8px 10px 10px;color:#8b6a25;font:600 10px/1.3 var(--mono);letter-spacing:.12em}
+.search-result{display:flex;align-items:center;gap:12px;min-height:68px;padding:9px 10px;border-radius:11px;color:#171717;text-decoration:none;transition:background .18s ease}
+.search-result+.search-result{border-top:1px solid #eee}
+.search-result:hover,.search-result:focus-visible{background:#f7f3e9;outline:none}
+.search-result img{width:48px;height:48px;object-fit:contain;background:#f4f2ed;border-radius:8px;flex:0 0 48px}
+.search-result-copy{display:flex;flex:1;min-width:0;flex-direction:column;gap:4px}
+.search-result-copy strong{font-size:12px;line-height:1.35;font-weight:700}
+.search-result-copy small{font-size:12px;color:#8b6a25;font-weight:700}
+.search-result-arrow{font-size:20px;color:#9b792d;padding:0 5px}
+.search-empty{padding:14px 12px;color:#555;font-size:13px;line-height:1.5}
+@media(max-width:760px){.search-feedback{top:calc(100% + 7px);max-height:60vh;padding:7px;border-radius:12px}.search-result{min-height:60px;gap:9px;padding:8px}.search-result-copy strong{font-size:11px}}
+
+/* v160 — correção estritamente visual solicitada: hero transparente sobre o background global. */
+body>main>.hero{
+  background:transparent!important;
+}
+@media(max-width:760px){
+  body>main>.hero{
+    background:transparent!important;
+  }
 }

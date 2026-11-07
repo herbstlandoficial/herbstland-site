@@ -1,0 +1,23 @@
+/* HERBSTLAND v150 — faixa superior centralizada e rodapé unificado */
+.header-promo{height:36px!important;min-height:36px!important;box-sizing:border-box;position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:0 24px!important;background:#efc43e!important;color:#111!important;font:700 11px var(--body,Arial,sans-serif)!important;letter-spacing:.12em!important;}
+.header-promo .promo-center{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;text-align:center!important;white-space:nowrap!important;font-weight:800!important;letter-spacing:.19em!important;color:#111!important;}
+.header-promo .promo-right{margin-left:auto!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;white-space:nowrap!important;color:#111!important;font-size:10px!important;letter-spacing:.02em!important;}
+.header-promo .promo-right b{font-size:16px!important}.header-promo .promo-right i{height:17px;width:1px;background:#17140b;margin:0 7px}
+.footer.footer-expanded{display:block!important;width:100%!important;box-sizing:border-box!important;margin-top:0!important;padding:58px 7vw 24px!important;background:#080807!important;color:#f4f3ed!important;text-align:left!important;}
+.footer-expanded .footer-main{width:min(1120px,100%)!important;margin:0 auto 42px!important;display:grid!important;grid-template-columns:1.35fr 1fr 1fr 1fr!important;gap:34px!important;align-items:start!important;}
+.footer-expanded .footer-about,.footer-expanded .footer-column{min-width:0!important}
+.footer-expanded .footer-about>p,.footer-expanded .footer-column h3{color:#efc43e!important}
+.footer-expanded .footer-about>span,.footer-expanded .footer-column a,.footer-expanded .footer-column span,.footer-expanded .footer-bottom{color:#d0cec7!important}
+.footer-expanded .footer-column{display:flex!important;flex-direction:column!important;gap:12px!important}
+.footer-expanded .footer-column h3{margin:0 0 7px!important;font-size:12px!important;letter-spacing:.1em!important}
+.footer-expanded .footer-column a{text-decoration:none!important}.footer-expanded .footer-column a:hover{color:#efc43e!important}
+.footer-expanded .footer-bottom{width:min(1120px,100%)!important;margin:0 auto!important;padding:20px 0 0!important;border-top:1px solid #343434!important;display:flex!important;justify-content:space-between!important;gap:14px!important;font-size:10px!important;letter-spacing:.08em!important;}
+.footer-expanded .footer-social-icons{display:flex!important;gap:15px!important;margin-top:20px!important}
+.footer-expanded .footer-social-icons a{color:#f4f3ed!important}
+@media(max-width:760px){.header-promo{height:34px!important;min-height:34px!important;padding:0 8px!important}.header-promo .promo-center{font-size:8px!important;letter-spacing:.1em!important;max-width:96%;overflow:hidden;text-overflow:ellipsis}.header-promo .promo-right{display:none!important}}
+@media(max-width:850px){.footer-expanded .footer-main{grid-template-columns:1fr 1fr!important;gap:28px!important}}
+@media(max-width:520px){.footer.footer-expanded{padding:42px 6vw 22px!important}.footer-expanded .footer-main{grid-template-columns:1fr!important;max-width:340px!important;margin-bottom:30px!important}.footer-expanded .wordmark{width:175px!important}.footer-expanded .footer-bottom{flex-direction:column!important;align-items:center!important;text-align:center!important;gap:9px!important;font-size:9px!important}}
+body.account-page .footer.footer-expanded{background:#080807!important;color:#f4f3ed!important}
+body.account-page .footer-expanded .footer-about>p,body.account-page .footer-expanded .footer-about>span,body.account-page .footer-expanded .footer-column span,body.account-page .footer-expanded .footer-column a,body.account-page .footer-expanded .footer-bottom,body.account-page .footer-expanded .footer-column h3,body.account-page .footer-expanded .footer-social-icons a{color:inherit!important}
+body.account-page .footer-expanded .footer-about>p,body.account-page .footer-expanded .footer-column h3{color:#efc43e!important}
+body.account-page .footer-expanded .footer-bottom{border-top-color:#343434!important}

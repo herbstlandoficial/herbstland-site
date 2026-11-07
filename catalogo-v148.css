@@ -1,0 +1,78 @@
+/* HERBSTLAND v148 — catálogo com fundo claro e ações de compra */
+.oversized-page{background:#e9e5da!important;color:#1b1a16!important;position:relative}
+.oversized-page:before{content:"";position:absolute;inset:0 0 auto;height:520px;background:radial-gradient(ellipse at 18% 5%,rgba(214,170,50,.16),transparent 52%),linear-gradient(135deg,#f2efe7,#e5e0d4);pointer-events:none}
+.oversized-page .catalog-back,.oversized-page .shop{position:relative;z-index:1}
+.oversized-page .catalog-back{color:#777164!important}
+.oversized-page .shop-heading h2{color:#171612!important}
+.oversized-page .shop-heading h2 em{color:#c99a20!important}
+.oversized-page .catalog-intro{color:#706b60!important}
+.oversized-page .category-sidebar{background:#fffdf8!important;border:1px solid #ded8ca;box-shadow:0 8px 22px rgba(36,29,13,.06)}
+.oversized-page .category-sidebar h3{color:#8a6b20!important}
+.oversized-page .category-sidebar a{color:#39362e!important}
+.oversized-page .category-sidebar a:hover,.oversized-page .category-sidebar a.active{color:#a4770d!important}
+.oversized-page .product-card{background:#fffdf9!important;border:1px solid #ded8ca!important;border-radius:5px!important;padding:10px!important;box-shadow:0 9px 24px rgba(42,34,17,.08)!important}
+.oversized-page .product-visual.product-photo{background:#f1eee6!important}
+.oversized-page .product-info{min-height:90px!important}
+.catalog-product-actions{display:grid;grid-template-columns:1fr;gap:7px;margin:0 2px 3px}
+.catalog-product-actions button,.catalog-product-actions a{min-height:43px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:3px;font:700 9px var(--body);letter-spacing:.045em;text-decoration:none;cursor:pointer;transition:transform .18s,background .18s}
+.catalog-add-btn{border:1px solid #171612;background:#171612;color:#fff}
+.catalog-add-btn:hover{background:#3a321e;transform:translateY(-1px)}
+.catalog-whatsapp-btn{border:1px solid #c99a20;background:#d6aa32;color:#171612}
+.catalog-whatsapp-btn:hover{background:#e7c45d;transform:translateY(-1px)}
+.catalog-product-actions span{font-size:15px}
+.oversized-page .shop-note{color:#777164!important}
+@media(max-width:700px){.catalog-product-actions{grid-template-columns:1fr}.catalog-product-actions button,.catalog-product-actions a{min-height:40px;font-size:8px}.oversized-page .shop{padding-top:38px}.oversized-page .shop-heading h2{font-size:clamp(48px,12vw,78px)}}
+
+/* HERBSTLAND v149 — equilíbrio visual e contraste do título */
+main.oversized-page{
+  background:linear-gradient(180deg,#eee9dc 0%,#e7e0d1 58%,#f3f0e8 100%)!important;
+  color:#211f19!important;
+  min-height:100vh;
+}
+main.oversized-page:before{
+  height:600px;
+  background:
+    radial-gradient(ellipse at 18% 8%,rgba(214,170,50,.19),transparent 48%),
+    radial-gradient(ellipse at 88% 22%,rgba(255,255,255,.72),transparent 42%),
+    linear-gradient(135deg,#f4f0e6 0%,#e9e2d4 100%)!important;
+}
+.oversized-page .shop{
+  background:transparent!important;
+  color:#211f19!important;
+}
+.oversized-page .shop-heading h2{
+  color:#242119!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+.oversized-page .shop-heading h2 em{
+  color:#c99a20!important;
+}
+.oversized-page .section-index{
+  color:#8b6b22!important;
+}
+.oversized-page .catalog-intro,
+.oversized-page .shop-note{
+  color:#625d51!important;
+}
+.oversized-page .catalog-back{
+  background:rgba(255,252,245,.72)!important;
+  color:#625d51!important;
+}
+.oversized-page .category-sidebar{
+  background:#fffdf8!important;
+}
+.oversized-page .product-card{
+  background:#fffefa!important;
+}
+
+/* v163 — catálogo com quatro produtos por linha em telas grandes */
+@media (min-width: 1500px){
+  .oversized-page .product-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:16px!important;
+  }
+  .oversized-page .product-visual.product-photo{
+    height:clamp(220px,18vw,300px)!important;
+  }
+}
